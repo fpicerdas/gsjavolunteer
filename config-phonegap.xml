@@ -111,5 +111,5 @@
 	</platform>
 	<platform name="ios">
 	</platform>
-	<preference name="phonegap-version" value="cli-8.0.0" />
+	<preference name="phonegap-version" value="cli-9.0.0" />
 </widget>
