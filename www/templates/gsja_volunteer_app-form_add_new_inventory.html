@@ -1,0 +1,45 @@
+	<ion-view view-title=" Add New Inventory" hide-nav-bar="false" >
+		<!-- popover -->
+		<ion-nav-buttons side="right">
+			<button class="button button-icon button-clear ion-android-more-vertical" id="menu-popover" ng-click="popover.show($event)"></button>
+		</ion-nav-buttons>
+		<!-- ./popover -->
+		<ion-nav-title> Add New Inventory</ion-nav-title>
+		<!-- content -->
+		<ion-content delegate-handle="top"   id="page-form_add_new_inventory" class="has-header page-form_add_new_inventory">
+		
+		<div class="list list"  >
+			<form ng-submit="submitAdd_new_inventory()">
+
+			<!-- input nama_barang -->
+			<label class="item item-input item-floating-label">
+				<span class="input-label">name</span>
+				<input type="text" ng-model="form_add_new_inventory.nama_barang" name="nama_barang" placeholder="nama_barang" ng-required="true"/>
+			</label>
+			<!-- ./input nama_barang -->
+
+			<!-- input kondisi_posisi -->
+			<label class="item item-input item-floating-label">
+				<span class="input-label">condition</span>
+				<input type="text" ng-model="form_add_new_inventory.kondisi_posisi" name="kondisi_posisi" placeholder="kondisi_posisi" ng-required="true"/>
+			</label>
+			<!-- ./input kondisi_posisi -->
+
+			<!-- input foto_barang -->
+			<label class="item item-input item-floating-label">
+				<span class="input-label">photo</span>
+				<input type="file" fileread="form_add_new_inventory.foto_barang" name="foto_barang" placeholder="foto_barang" ng-required="true"/>
+			</label>
+			<!-- ./input foto_barang -->
+
+			<!-- input submit -->
+			<div class="item item-button noborder">
+				<button class="button button-assertive ink">Submit</button>
+			</div>
+			<!-- ./input submit -->
+			</form>
+		</div>
+		<br/><br/><br/><br/>
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>

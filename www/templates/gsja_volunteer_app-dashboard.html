@@ -1,0 +1,47 @@
+	<ion-view view-title=" Dashboard" hide-nav-bar="false" >
+		<!-- popover -->
+		<ion-nav-buttons side="right">
+			<button class="button button-icon button-clear ion-android-more-vertical" id="menu-popover" ng-click="popover.show($event)"></button>
+		</ion-nav-buttons>
+		<!-- ./popover -->
+		<ion-nav-title> Dashboard</ion-nav-title>
+		<!-- content -->
+		<ion-content delegate-handle="top"   id="page-dashboard" class=" page-dashboard">
+				<div class="dashboard-panel">
+			<div class="item item-title no-border item-positive-900">Dashboard</div>
+			<!-- row -->
+			<div class="row">
+				<a class="col-33 no-border light positive-bg ink"  ng-href="#/gsja_volunteer_app/list_barang" >
+					<i class="icon ion-android-favorite" ></i>
+					<p>{{ "List Barang" | translate }}</p>
+				</a>
+				<a class="col-33 no-border light positive-900-bg ink"  ng-href="#/gsja_volunteer_app/form_add_new_inventory" >
+					<i class="icon ion-android-favorite" ></i>
+					<p>{{ "Tambah Barang" | translate }}</p>
+				</a>
+			</div>
+			<!-- ./row -->
+			<div class="item item-title no-border item-positive-900">Help</div>
+			<!-- row -->
+			<!--<div class="row">
+				<a class="col-33 no-border light calm-bg ink"  ng-href="#/gsja_volunteer_app/faqs" >
+					<i class="icon ion-android-chat" ></i>
+					<p>{{ "Faqs" | translate }}</p>
+				</a>
+				<a class="col-33 no-border light calm-900-bg ink" ng-click="openURL('market://details?id=com.imabuilder.creativecode.design.gsjavolunteerapp')" >
+					<i class="icon ion-android-playstore" ></i>
+					<p>{{ "Rate This App" | translate }}</p>
+				</a>
+			</div>-->
+			<!-- ./row -->
+			
+
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>

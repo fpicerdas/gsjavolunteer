@@ -1,0 +1,41 @@
+	<ion-view view-title=" {{ list_barang.nama_barang }}" hide-nav-bar="false" >
+		<!-- popover -->
+		<ion-nav-buttons side="right">
+			<button class="button button-icon button-clear ion-android-more-vertical" id="menu-popover" ng-click="popover.show($event)"></button>
+		</ion-nav-buttons>
+		<!-- ./popover -->
+		<ion-nav-title> {{ list_barang.nama_barang }}</ion-nav-title>
+		<!-- content -->
+		<ion-content delegate-handle="top"  scroll="true"   id="page-list_barang_singles" class="page-list_barang_singles">
+					<ion-refresher pulling-text="Pull to refresh..."  on-refresh="doRefresh()"></ion-refresher>
+			<div class="hero has-mask slide-up" style="background-image: url('{{list_barang.foto_barang}}');">
+				<div class="content">
+				</div>
+			</div>
+			<div class="mid-bar dark-bg z1 padding">
+					<h3 ng-bind-html="list_barang.nama_barang | strHTML">{{ list_barang.nama_barang }}</h3>
+					<p>&nbsp;</p>
+			</div>
+			<div class="list ">
+
+					<!-- id -->
+					<!-- ./id -->
+
+					<!-- heading-1 -->
+					<div class="item item-divider"  ng-bind-html="list_barang.nama_barang | to_trusted">{{list_barang.nama_barang}}</div>
+					<!-- ./heading-1 -->
+
+					<!-- images -->
+					<!-- ./images -->
+
+					<!-- to_trusted -->
+					<div class="item item-text-wrap noborder to_trusted {{ fontsize }}" ng-bind-html="list_barang.kondisi_posisi | strHTML"></div>
+					<!-- ./to_trusted -->
+              
+              
+			</div>
+			<br/><br/><br/>
+
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>

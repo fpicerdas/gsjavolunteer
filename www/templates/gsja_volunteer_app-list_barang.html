@@ -1,0 +1,61 @@
+	<ion-view view-title=" List Barang" hide-nav-bar="false" >
+		<!-- popover -->
+		<ion-nav-buttons side="right">
+			<button class="button button-icon button-clear ion-android-more-vertical" id="menu-popover" ng-click="popover.show($event)"></button>
+		</ion-nav-buttons>
+		<!-- ./popover -->
+		<ion-nav-title> List Barang</ion-nav-title>
+		<!-- content -->
+		<ion-content delegate-handle="top"   id="page-list_barang" class=" page-list_barang">
+		
+			<!-- code refresh -->
+			<ion-refresher pulling-text="{{ 'Pull to refresh...' | translate }}"  on-refresh="doRefresh()"></ion-refresher>
+			<!-- ./code refresh -->
+			
+
+			<!-- code search -->
+			<div class="list card animate-none" >
+				<div class="item item-input-inset">
+					<label class="item-input-wrapper">
+					<input type="search" ng-model="filter_list_barangs" placeholder="{{ 'Search' | translate }}" aria-label="filter list_barangs" />
+					</label>
+					<button class="button button-small" barcode-scanner barcode-text="filter_list_barangs"><i class="ion-qr-scanner"></i></button>
+				</div>
+			</div>
+			<!-- ./code search -->
+			
+
+			<!-- code listing -->
+			<div class="list animate-none">
+				<div class="item-thumbnail-3 card" ng-repeat="item in list_barangs | filter:filter_list_barangs as results" ng-init="$last ? fireEvent() : null">
+				<a class="item item-colorful item-thumbnail-left "  href="#/gsja_volunteer_app/list_barang_singles/{{item.id}}">
+					<img alt="" class="full-image" ng-src="{{item.foto_barang}}" />
+					<h3 class=""  ng-bind-html="item.nama_barang | to_trusted"></h3>
+				<i class="icon ion-android-more-horizontal pull-right"></i>
+				</a>
+				</div>
+			</div>
+			<!-- ./code listing -->
+
+
+			<!-- code infinite scroll -->
+			<ion-list class="list">
+				<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="onInfinite()" distance="5px" ng-if="hasMoreData"></ion-infinite-scroll>
+			</ion-list>
+			<!-- ./code infinite scroll -->
+
+
+			<!-- code search result not found -->
+			<ion-list class="list">
+				<div class="item" ng-if="results.length == 0" >
+					<p>{{ 'No results found...!' | translate }}</p>
+				</div>
+			</ion-list>
+			<!-- code search result not found -->
+
+
+
+
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>
