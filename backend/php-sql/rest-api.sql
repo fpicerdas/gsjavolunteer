@@ -1,6 +1,6 @@
 
--- CREATE DATABASE IF NOT EXISTS `list_barang` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci	;
--- USE `list_barang`;
+-- CREATE DATABASE IF NOT EXISTS `abbahost_volunteer` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci	;
+-- USE `abbahost_volunteer`;
 
 -- Delete list_barang table
 -- DROP TABLE `list_barang`;

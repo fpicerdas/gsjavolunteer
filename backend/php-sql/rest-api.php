@@ -12,16 +12,16 @@
 
 
 /** CONFIG:START **/
-$config["host"] 		= "localhost" ; 		//host
-$config["user"] 		= "root" ; 		//Username SQL
-$config["pass"] 		= "root" ; 		//Password SQL
-$config["dbase"] 		= "list_barang" ; 		//Database
+$config["host"] 		= "23.95.4.194" ; 		//host
+$config["user"] 		= "abbahost_admin" ; 		//Username SQL
+$config["pass"] 		= "123qwe!@#QWE" ; 		//Password SQL
+$config["dbase"] 		= "abbahost_volunteer" ; 		//Database
 $config["utf8"] 		= true ; 		//turkish charset set false
 $config["timezone"] 		= "Asia/Jakarta" ; 		// check this site: http://php.net/manual/en/timezones.php
-$config["abs_url_images"] 		= "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//media/image/" ; 		//Absolute Images URL
-$config["abs_url_videos"] 		= "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//media/media/" ; 		//Absolute Videos URL
-$config["abs_url_audios"] 		= "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//media/media/" ; 		//Absolute Audio URL
-$config["abs_url_files"] 		= "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//media/file/" ; 		//Absolute Files URL
+$config["abs_url_images"] 		= "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//media/image/" ; 		//Absolute Images URL
+$config["abs_url_videos"] 		= "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//media/media/" ; 		//Absolute Videos URL
+$config["abs_url_audios"] 		= "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//media/media/" ; 		//Absolute Audio URL
+$config["abs_url_files"] 		= "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//media/file/" ; 		//Absolute Files URL
 $config["image_allowed"][] 		= array("mimetype"=>"image/jpeg","ext"=>"jpg") ; 		//whitelist image
 $config["image_allowed"][] 		= array("mimetype"=>"image/jpg","ext"=>"jpg") ; 		
 $config["image_allowed"][] 		= array("mimetype"=>"image/png","ext"=>"png") ; 		
@@ -182,9 +182,9 @@ switch($_GET["json"]){
 		$rest_api["routes"][1]["tb_version"] = "Upd.1908170330";
 		$rest_api["routes"][1]["methods"][] = "POST";
 		$rest_api["routes"][1]["_links"]["self"] = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"]."?json=submit&form=list_barang";
-		$rest_api["routes"][1]["args"]["nama_barang"] = array("required"=>"true","description"=>"Insert data to field `nama_barang` in table `list_barang`");
-		$rest_api["routes"][1]["args"]["foto_barang"] = array("required"=>"true","description"=>"Insert data to field `foto_barang` in table `list_barang`");
-		$rest_api["routes"][1]["args"]["kondisi_posisi"] = array("required"=>"true","description"=>"Insert data to field `kondisi_posisi` in table `list_barang`");
+		$rest_api["routes"][1]["args"]["nama_barang"] = array("required"=>"true","description"=>"Insert data to field `name` in table `list_barang`");
+		$rest_api["routes"][1]["args"]["kondisi_posisi"] = array("required"=>"true","description"=>"Insert data to field `condition` in table `list_barang`");
+		$rest_api["routes"][1]["args"]["foto_barang"] = array("required"=>"true","description"=>"Insert data to field `photo` in table `list_barang`");
 		$rest_api["routes"][2]["namespace"] = "submit/list_barang";
 		$rest_api["routes"][2]["tb_version"] = "Upd.1908170648";
 		$rest_api["routes"][2]["methods"][] = "POST";
@@ -207,28 +207,32 @@ switch($_GET["json"]){
 
 				$rest_api["auth"]["basic"] = false;
 
-				$rest_api["args"]["nama_barang"] = array("required"=>"true","description"=>"Receiving data from the input `nama_barang`");
-				$rest_api["args"]["foto_barang"] = array("required"=>"true","description"=>"Receiving data from the input `foto_barang`");
-				$rest_api["args"]["kondisi_posisi"] = array("required"=>"true","description"=>"Receiving data from the input `kondisi_posisi`");
+				$rest_api["args"]["nama_barang"] = array("required"=>"true","description"=>"Receiving data from the input `name`");
+				$rest_api["args"]["kondisi_posisi"] = array("required"=>"true","description"=>"Receiving data from the input `condition`");
+				$rest_api["args"]["foto_barang"] = array("required"=>"true","description"=>"Receiving data from the input `photo`");
 				if(!isset($_POST["nama_barang"])){
 					$_POST["nama_barang"]="";
-				}
-				if(!isset($_POST["foto_barang"])){
-					$_POST["foto_barang"]="";
 				}
 				if(!isset($_POST["kondisi_posisi"])){
 					$_POST["kondisi_posisi"]="";
 				}
+				if(!isset($_POST["foto_barang"])){
+					$_POST["foto_barang"]="";
+				}
 				$rest_api["message"] = "Please! complete the form provided.";
 				$rest_api["title"] = "Notice!";
-				if(($_POST["nama_barang"] != "") || ($_POST["foto_barang"] != "") || ($_POST["kondisi_posisi"] != "")){
+				if(($_POST["nama_barang"] != "") || ($_POST["kondisi_posisi"] != "") || ($_POST["foto_barang"] != "")){
 					// avoid undefined
 					$input["nama_barang"] = "";
-					$input["foto_barang"] = "";
 					$input["kondisi_posisi"] = "";
+					$input["foto_barang"] = "";
 					// variable post
 					if(isset($_POST["nama_barang"])){
 						$input["nama_barang"] = $mysql->escape_string($_POST["nama_barang"]);
+					}
+
+					if(isset($_POST["kondisi_posisi"])){
+						$input["kondisi_posisi"] = $mysql->escape_string($_POST["kondisi_posisi"]);
 					}
 
 					$invalid_file = true;
@@ -272,14 +276,10 @@ switch($_GET["json"]){
 							}
 						}
 					}
-					if(isset($_POST["kondisi_posisi"])){
-						$input["kondisi_posisi"] = $mysql->escape_string($_POST["kondisi_posisi"]);
-					}
-
-					$sql_query = "INSERT INTO `list_barang` (`nama_barang`,`foto_barang`,`kondisi_posisi`) VALUES ('".$input["nama_barang"]."','".$input["foto_barang"]."','".$input["kondisi_posisi"]."' )";
+					$sql_query = "INSERT INTO `list_barang` (`nama_barang`,`kondisi_posisi`,`foto_barang`) VALUES ('".$input["nama_barang"]."','".$input["kondisi_posisi"]."','".$input["foto_barang"]."' )";
 					if($invalid_file ==false){
 						if($query = $mysql->query($sql_query)){
-							$rest_api["message"] = "Your request has been sent.";
+							$rest_api["message"] = "Successfully Added new item!";
 							$rest_api["title"] = "Successfully";
 						}else{
 							$rest_api["message"] = "Form input and SQL Column do not match.";

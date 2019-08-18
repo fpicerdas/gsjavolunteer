@@ -686,7 +686,7 @@ $ionicConfig.backButton.text("");
 		var $messages, $title = null;
 		$http({
 				method:"POST",
-				url: "http://localhost:81/output/gsja_volunteer_app/backend/php-sql/rest-api.php?json=submit&form=list_barang",
+				url: "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql/rest-api.php?json=submit&form=list_barang",
 				data: $httpParamSerializer($scope.form_add_new_inventory),  // pass in data as strings
 				headers: {"Content-Type":"application/x-www-form-urlencoded"}  // set the headers so angular passing info as form data (not request payload)
 			})
@@ -840,9 +840,9 @@ $ionicConfig.backButton.text("");
 	
 	
 	// TODO: list_barangCtrl --|-- $scope.fetchURL
-	$scope.fetchURL = "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&sort=asc";
+	$scope.fetchURL = "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&sort=asc";
 	// TODO: list_barangCtrl --|-- $scope.fetchURLp
-	$scope.fetchURLp = "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&sort=asc&callback=JSON_CALLBACK";
+	$scope.fetchURLp = "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&sort=asc&callback=JSON_CALLBACK";
 	// TODO: list_barangCtrl --|-- $scope.hashURL
 	$scope.hashURL = md5.createHash( $scope.fetchURL.replace(targetQuery,raplaceWithQuery));
 	
@@ -1158,9 +1158,9 @@ $ionicConfig.backButton.text("");
 	// Retrieving data
 	var itemID = $stateParams.id;
 	// TODO: list_barang_singlesCtrl --|-- $scope.fetchURL
-	$scope.fetchURL = "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&id=" + itemID;
+	$scope.fetchURL = "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&id=" + itemID;
 	// TODO: list_barang_singlesCtrl --|-- $scope.fetchURLp
-	$scope.fetchURLp = "http://localhost:81/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&id=" + itemID + "&callback=JSON_CALLBACK";
+	$scope.fetchURLp = "http://abbayosua.host/output/gsja_volunteer_app/backend/php-sql//rest-api.php?json=list_barang&id=" + itemID + "&callback=JSON_CALLBACK";
 	// TODO: list_barang_singlesCtrl --|-- $scope.hashURL
 	$scope.hashURL = md5.createHash($scope.fetchURL);
 	
